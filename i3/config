@@ -1,25 +1,3 @@
-
-
-# i3wm Themer config
-set_from_resource	  $color15_i3wmthemer	    color15
-set_from_resource	  $color14_i3wmthemer	    color14
-set_from_resource	  $color13_i3wmthemer	    color13
-set_from_resource	  $color12_i3wmthemer	    color12
-set_from_resource	  $color11_i3wmthemer	    color11
-set_from_resource	  $color10_i3wmthemer	    color10
-set_from_resource	  $color09_i3wmthemer		  color9
-set_from_resource	  $color08_i3wmthemer		  color8
-set_from_resource	  $color07_i3wmthemer		  color7
-set_from_resource 	$color06_i3wmthemer		  color6
-set_from_resource 	$color05_i3wmthemer 	    color5
-set_from_resource 	$color04_i3wmthemer 	    color4
-set_from_resource 	$color03_i3wmthemer 	    color3
-set_from_resource 	$color02_i3wmthemer 	    color2
-set_from_resource 	$color01_i3wmthemer 	    color1
-set_from_resource	  $color00_i3wmthemer		  color0
-set_from_resource	  $foreground_i3wmthemer	foreground
-set_from_resource	  $background_i3wmthemer	background
-
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -30,8 +8,8 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 2
-new_float pixel 2
+new_window pixel 1
+new_float normal
 
 # Hide borders
 hide_edge_borders none
@@ -50,15 +28,13 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec tilix --window-style=borderless
-#bindsym F8 exec tilix --quake
 bindsym $mod+Shift+Return exec tilix -q
-
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun -show combi -modi combi"
+bindsym $mod+d exec --no-startup-id "rofi -theme sidebar -combi-modi drun -show combi -modi combi"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -67,14 +43,18 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-#exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id volumeicon
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-surround-40 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-surround-40 -5%
+
 
 ################################################################################################
- 
+
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
@@ -86,28 +66,22 @@ bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-#bindsym $mod+t exec --no-startup-id pkill compton
+bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+j --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec "main -s | xclip -selection clipboard -timage/png"
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-focus_follows_mouse no
-
-# Multi-monitor
-
-bindsym $mod+Ctrl+Right move to output right
-bindsym $mod+Ctrl+Left move to output left
-
+# focus_follows_mouse no
 
 # change focus
-#bindsym $mod+z focus left
-#bindsym $mod+x focus down
-#bindsym $mod+c focus up
-#bindsym $mod+b focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -116,10 +90,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-#bindsym $mod+Shift+a move left
-#bindsym $mod+Shift+s move down
-#bindsym $mod+Shift+w move up
-#bindsym $mod+Shift+d move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -133,8 +107,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+h split h; exec notify-send 'tile horizontally'
+bindsym $mod+v split v; exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -165,18 +139,17 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-#bindsym $mod+Ctrl+Right workspace next
-#bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
+set $ws1 Telegram
+set $ws2 Firefox
+set $ws3 Code
+set $ws4 Music
 set $ws5 5
 set $ws6 6
 set $ws7 7
@@ -191,7 +164,6 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
-
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -214,15 +186,8 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
-# assign [class="Emacs"] $ws3
-# assign [class="Telegram"] $ws2
-# assign [class="Firefox"] $ws1
-# assign [class="Zathura"] $ws4
-# assign [class="vlc"] $ws5
+assign [class="Telegram"] $ws1
+assign [class="Emacs"] $ws3
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -269,8 +234,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-  # bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym l exec --no-startup-id "i3lock-fancy -g -- scrot -z"
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
@@ -308,7 +272,7 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id "i3lock-fancy -g -- scrot -z"
+bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -318,88 +282,35 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec --no_startup-id "~/Data/lightsOn.sh"
-exec --no-startup-id owncloud
-exec --no-startup-id "feh --bg-scale ~/Pictures/Forest2.png"
-
-exec --no-startup-id keepassxc
-exec --no-startup-id "sleep 1; i3-msg '[instance=keepassxc] move scratchpad'"
-
-# Open KeepassXC in floating mode, and recover from scratchpad
-for_window [class="keepassxc"] floating enable
-bindsym $mod+Shift+p [class="keepassxc"] scratchpad show
-
-exec --no-startup-id "redshift -l 34.7:-4.4 -m randr:screen=0"
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-# exec --no-startup-id xautolock -time 30 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
-# Color palette used for the terminal ( ~/.extend.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background  $i3_background
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
+exec_always --no-startup-id syncthing -no-browser
+exec_always --no-startup-id "feh --bg-scale ~/Pictures/space.png"
+exec --no-startup-id "redshift -l 34.7:-4.4"
 
-# Color palette used for i3 
-# Variables are set based on the documentation:
-# https://i3wm.org/dovs/userguide.html#variables
-# Changing the value of one of the variables will
-# effect all the areas with the same color.
-set $i3_background      #2b2c2b
-set $i3_text            #f9faf9
-set $i3_separator       #454947
-set $i3_color1          #f9faf9
-set $i3_color2          #595b5b
-set $i3_color3          #353836
-set $i3_color4          #16a085
-set $i3_color5          #fdf6e3
-set $i3_color6          #eee8d5
-set $i3_color7          #e5201d
-set $i3_color8          #808380
-set $i3_color9          #434745
-set $i3_color10         #454948
-set $i3_color11         #80fff9
-set $i3_color12         #fdf6e3
-set $i3_color13         #cb4b16
-set $i3_color14         #268bd2
-set $i3_color15         #000000
-set $i3_color16         #ffffff
-set $i3_color17         #0c0c0c
+# MPD NCMPCPP
+exec --no-startup-id mpd
+
+# KeyPassXC
+exec --no-startup-id keepassxc
+exec --no-startup-id "sleep 1; i3-msg '[instance=keepassxc] move scratchpad'"
+for_window [class="keepassxc"] floating enable
+bindsym $mod+Shift+p [class="keepassxc"] scratchpad show
+
+###################
+##      BAR      ##
+###################
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #bar {
 #	i3bar_command i3bar
-#	status_command i3blocks -c ~/.i3/i3blocks.conf
-#	position top
+#	status_command i3status
+#	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -407,46 +318,45 @@ set $i3_color17         #0c0c0c
 
 #	bindsym button4 nop
 #	bindsym button5 nop
-#	font pango:Source Sans Pro-10 10
+#   font xft:URWGothic-Book 11
 #	strip_workspace_numbers yes
 
-#	colors {
-#       background $i3_background
-#        statusline $i3_text
-#        separator  $i3_separator
+#    colors {
+#        background #283339
+#        statusline #F9FAF9
+#        separator  #454947
 
-#                           border     backgr.        text
-#        focused_workspace   $i3_color1 $i3_color4     $i3_text
-#        active_workspace    $i3_color2 $i3_color3     $i3_color5
-#        inactive_workspace  $i3_color2 $i3_color3     $i3_color6
-#        binding_mode        $i3_color8 $i3_background $i3_text
-#        urgent_workspace    $i3_color4 $i3_color5     $i3_color7
+#                      border  backgr. text
+#        focused_workspace  #F9FAF9 #16a085 #292F34
+#        active_workspace   #595B5B #353836 #FDF6E3
+#        inactive_workspace #595B5B #283339 #EEE8D5
+#        binding_mode       #16a085 #2C2C2C #F9FAF9
+#        urgent_workspace   #16a085 #FDF6E3 #E5201D
 #    }
 #}
 
 # Polybar
-exec_always --no-startup-id killall polybar; polybar -r example
+exec_always --no-startup-id ~/.i3/polybar.sh
 
 # hide/unhide i3status bar
-#bindsym $mod+m bar mode toggle
+# bindsym $mod+m bar mode toggle
 
+# Theme colors
+# class                   border  backgr. text    indic.   child_border
+  client.focused          #556064 #556064 #80FFF9 #FDF6E3
+  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+  client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
-# Theme colors (i3wmthemer)
-# class                 border      backgr.     text        indic.      child_border
-client.focused         	$foreground_i3wmthemer	$background_i3wmthemer	$foreground_i3wmthemer	$background_i3wmthemer		$background_i3wmthemer
-client.focused_inactive	$foreground_i3wmthemer	$background_i3wmthemer	$foreground_i3wmthemer	$background_i3wmthemer		$background_i3wmthemer
-client.unfocused       	$foreground_i3wmthemer	$background_i3wmthemer	$foreground_i3wmthemer	$background_i3wmthemer		$background_i3wmthemer
-client.urgent		        $foreground_i3wmthemer	$background_i3wmthemer	$foreground_i3wmthemer	$background_i3wmthemer		$background_i3wmthemer
-client.placeholder	    $foreground_i3wmthemer	$background_i3wmthemer	$foreground_i3wmthemer	$background_i3wmthemer		$background_i3wmthemer
-
-client.background	$background_i3wmthemer
+  client.background       #2B2C2B
 
 #############################
 ### settings for i3-gaps: ###
 #############################
 
 # Set inner/outer gaps
-gaps inner 10
+gaps inner 20
 gaps outer -4
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.

@@ -34,7 +34,7 @@ bindsym $mod+Shift+Return exec tilix -q
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id "rofi -theme sidebar -combi-modi drun -show combi -modi combi"
+bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun -show combi -modi combi"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -43,14 +43,15 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
+#exec --no-startup-id volumeicon
+exec_always --no-startup-id "pulseaudio -k"
+exec_always --no-startup-id "pulseaudio --start"
+#exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-surround-40 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-surround-40 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%
 
 
 ################################################################################################
@@ -276,7 +277,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -290,7 +291,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
 exec_always --no-startup-id syncthing -no-browser
-exec_always --no-startup-id "feh --bg-scale ~/Pictures/space.png"
+# exec_always --no-startup-id "feh --bg-scale ~/Pictures/space.png"
 exec --no-startup-id "redshift -l 34.7:-4.4"
 
 # MPD NCMPCPP

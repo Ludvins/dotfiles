@@ -277,7 +277,7 @@ bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 #exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
@@ -289,7 +289,7 @@ exec --no-startup-id clipit
 # exec --no-startup-id start_conky_green
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-
+exec --no-startup-id "~/.i3/SunCycle/SunCycle.sh"
 exec_always --no-startup-id syncthing -no-browser
 # exec_always --no-startup-id "feh --bg-scale ~/Pictures/space.png"
 exec --no-startup-id "redshift -l 34.7:-4.4"
@@ -299,7 +299,7 @@ exec --no-startup-id mpd
 
 # KeyPassXC
 exec --no-startup-id keepassxc
-exec --no-startup-id "sleep 1; i3-msg '[instance=keepassxc] move scratchpad'"
+exec --no-startup-id "sleep 2; i3-msg '[instance=keepassxc] move scratchpad'"
 for_window [class="keepassxc"] floating enable
 bindsym $mod+Shift+p [class="keepassxc"] scratchpad show
 
@@ -338,6 +338,7 @@ bindsym $mod+Shift+p [class="keepassxc"] scratchpad show
 
 # Polybar
 exec_always --no-startup-id ~/.i3/polybar.sh
+exec_always --no-startup-id ~/.config/polybar/scripts/launchlistener.sh
 
 # hide/unhide i3status bar
 # bindsym $mod+m bar mode toggle

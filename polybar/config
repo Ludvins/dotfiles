@@ -3,7 +3,7 @@ monitor = eDP-1
 width = 100%
 height = 27
 
-background = #00000000
+background = #000000
 foreground = #ccffffff
 
 line-color = ${bar/bottom.background}
@@ -23,13 +23,15 @@ font-5 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;+3"
 font-6 = "Material Icons:style=Regular:pixelsize=10;+3"
 
 modules-left = powermenu mpd
-modules-right = volume backlight wireless-network wired-network battery date
+modules-center = date
+modules-right = volume backlight wireless-network wired-network battery
 
 [bar/bottom]
 monitor = eDP-1
 bottom = true
 width = 100%
 height = 27
+enable-ipc = true
 
 background = ${bar/top.background}
 foreground = ${bar/top.foreground}
@@ -44,17 +46,17 @@ module-margin-right = 6
 
 font-0 = NotoSans-Regular:size=8;+3
 font-1 = unifont:size=6;+3
-font-2 = Fontawesome:size=8;+3
-font-3 = "NotoSans:style=Regular:pixelsize=8;+3"
-font-4 = MaterialIcons:size=10;+3
-font-5 = Termsynu:size=8:antialias=false;+3
-font-6 = "Font Awesome 5 Free:style=Regular:pixelsize=10;+3"
-font-7 = "Font Awesome 5 Free:style=Solid:pixelsize=10;+3"
-font-8 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;+3"
-font-9 = "Material Icons:style=Regular:pixelsize=10;+3"
-font-10 = "DejaVu Sans:style=Bool:pixelsize=10;+3"
+font-2 = "NotoSans:style=Regular:pixelsize=8;+3"
+font-3 = MaterialIcons:size=10;+3
+font-4 = Termsynu:size=8:antialias=false;+3
+font-5 = "Font Awesome 5 Free:style=Regular:pixelsize=10;+3"
+font-6 = "Font Awesome 5 Free:style=Solid:pixelsize=10;+3"
+font-7 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;+3"
+font-8 = "Material Icons:style=Regular:pixelsize=10;+3"
+font-9 = "DejaVu Sans:style=Bool:pixelsize=10;+3"
 
-modules-left = i3
+
+modules-left = i3 
 modules-right = cpu memory
 
 [module/backlight]
@@ -131,20 +133,20 @@ label-focused = %icon%
 label-focused-foreground = #fff
 label-focused-background = #773f3f3f
 label-focused-underline = #c9665e
-label-focused-font = 4
+label-focused-font = 6
 label-focused-padding = 4
 
 label-unfocused = %icon%
 label-unfocused-foreground = #dd
 label-unfocused-underline = #666
-label-unfocused-font = 4
+label-unfocused-font = 6
 label-unfocused-padding = 4
 
 label-urgent = %icon%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-underline = #9b0a20
-label-urgent-font = 4
+label-urgent-font = 6
 label-urgent-padding = 4
 
 [module/cpu]
@@ -154,28 +156,28 @@ format = <label> <ramp-coreload>
 label = CPU
 
 ramp-coreload-0 = ▁ 
-ramp-coreload-0-font = 10
+ramp-coreload-0-font = 9
 ramp-coreload-0-foreground = #aaff77
 ramp-coreload-1 = ▂
-ramp-coreload-1-font = 10
+ramp-coreload-1-font = 9
 ramp-coreload-1-foreground = #aaff77
 ramp-coreload-2 = ▃
-ramp-coreload-2-font = 10
+ramp-coreload-2-font = 9
 ramp-coreload-2-foreground = #aaff77
 ramp-coreload-3 = ▄
-ramp-coreload-3-font = 10
+ramp-coreload-3-font = 9
 ramp-coreload-3-foreground = #aaff77
 ramp-coreload-4 = ▅
-ramp-coreload-4-font = 10
+ramp-coreload-4-font = 9
 ramp-coreload-4-foreground = #fba922
 ramp-coreload-5 = ▆
-ramp-coreload-5-font = 10
+ramp-coreload-5-font = 9
 ramp-coreload-5-foreground = #fba922
 ramp-coreload-6 = ▇
-ramp-coreload-6-font = 10
+ramp-coreload-6-font = 9
 ramp-coreload-6-foreground = #ff5555
 ramp-coreload-7 = █
-ramp-coreload-7-font = 10
+ramp-coreload-7-font = 9
 ramp-coreload-7-foreground = #ff5555
 
 [module/date]
@@ -194,12 +196,12 @@ bar-used-foreground-1 = #aaff77
 bar-used-foreground-2 = #fba922
 bar-used-foreground-3 = #ff5555
 bar-used-indicator = |
-bar-used-indicator-font = 6
+bar-used-indicator-font = 5
 bar-used-indicator-foreground = #ff
 bar-used-fill = 
-bar-used-fill-font = 7 
+bar-used-fill-font = 6
 bar-used-empty = 
-bar-used-empty-font = 2
+bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
 
 [module/mpd]
@@ -302,3 +304,46 @@ type = internal/date
 interval = 2
 date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 
+[module/previous]
+type = custom/script
+interval = 86400
+format = "%{T3}<label>"
+format-padding = 5
+; Previous song icon
+exec = echo ""
+format-underline = #1db954
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+[module/next]
+type = custom/script
+interval = 86400
+format = "%{T3}<label>"
+format-padding = 5
+; Next song icon
+exec = echo ""
+format-underline = #1db954
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+[module/playpause]
+type = custom/ipc
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+initial = 1
+format-underline = #1db954
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+[module/spotify]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = python3 ~/scripts/spotify/spotify_status.py
+initial = 1
+format-padding = 4
+format-underline = #1db954
+line-size = 1

@@ -1,3 +1,5 @@
+
+
 [bar/top]
 monitor = eDP-1
 width = 100%
@@ -9,9 +11,9 @@ foreground = #ccffffff
 line-color = ${bar/bottom.background}
 line-size = 16
 
-spacing = 2
-padding-right = 5
-module-margin = 4
+spacing = 0
+padding-right = 1 
+module-margin = 0
 
 ;fc-list to know the name of the font 
 font-0 = NotoSans-Regular:size=8;+3
@@ -21,10 +23,11 @@ font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=10;+3"
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=10;+3"
 font-5 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;+3"
 font-6 = "Material Icons:style=Regular:pixelsize=10;+3"
+font-7 = "UbuntuMono Nerd Font Mono:style=Regular:pixelsize=20;4"
 
-modules-left = powermenu mpd
+
 modules-center = date
-modules-right = volume backlight wireless-network wired-network battery
+modules-right = arrow3 volume arrow4 backlight arrow5 wireless-network wired-network arrow6 battery
 
 [bar/bottom]
 monitor = eDP-1
@@ -39,10 +42,10 @@ foreground = ${bar/top.foreground}
 line-color = ${bar/top.background}
 line-size = 2
 
-spacing = 3
-padding-right = 4
+spacing = 0
+padding-right = 1
 module-margin-left = 0
-module-margin-right = 6
+module-margin-right = 0
 
 font-0 = NotoSans-Regular:size=8;+3
 font-1 = unifont:size=6;+3
@@ -54,15 +57,16 @@ font-6 = "Font Awesome 5 Free:style=Solid:pixelsize=10;+3"
 font-7 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;+3"
 font-8 = "Material Icons:style=Regular:pixelsize=10;+3"
 font-9 = "DejaVu Sans:style=Bool:pixelsize=10;+3"
+font-10 = "UbuntuMono Nerd Font Mono:style=Regular:pixelsize=20;4"
 
+modules-left = i3
+modules-right = arrow1 cpu arrow2 memory
 
-modules-left = i3 
-modules-right = cpu memory
-
+separator = 
 [module/backlight]
 type = internal/xbacklight
 format = <ramp> <bar>
-
+format-background = #92965D
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
@@ -87,6 +91,11 @@ full-at = 98
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity> <label-full>
+
+
+format-charging-background = #645377
+format-discharging-background = #645377
+format-full-background = #645377
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = #f53c3c
@@ -155,29 +164,32 @@ interval = 0.5
 format = <label> <ramp-coreload>
 label = CPU
 
-ramp-coreload-0 = ▁ 
-ramp-coreload-0-font = 9
+format-foreground = #1d2330
+format-background = #92969D
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 10
 ramp-coreload-0-foreground = #aaff77
 ramp-coreload-1 = ▂
-ramp-coreload-1-font = 9
+ramp-coreload-1-font = 10
 ramp-coreload-1-foreground = #aaff77
 ramp-coreload-2 = ▃
-ramp-coreload-2-font = 9
+ramp-coreload-2-font = 10
 ramp-coreload-2-foreground = #aaff77
 ramp-coreload-3 = ▄
-ramp-coreload-3-font = 9
+ramp-coreload-3-font = 10
 ramp-coreload-3-foreground = #aaff77
 ramp-coreload-4 = ▅
-ramp-coreload-4-font = 9
+ramp-coreload-4-font = 10
 ramp-coreload-4-foreground = #fba922
 ramp-coreload-5 = ▆
-ramp-coreload-5-font = 9
+ramp-coreload-5-font = 10
 ramp-coreload-5-foreground = #fba922
 ramp-coreload-6 = ▇
-ramp-coreload-6-font = 9
+ramp-coreload-6-font = 10
 ramp-coreload-6-foreground = #ff5555
 ramp-coreload-7 = █
-ramp-coreload-7-font = 9
+ramp-coreload-7-font = 10
 ramp-coreload-7-foreground = #ff5555
 
 [module/date]
@@ -189,6 +201,7 @@ date-alt =   %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{
 type = internal/memory
 format = <label> <bar-used>
 label = RAM
+format-background = #84598D
 
 bar-used-width = 30
 bar-used-foreground-0 = #aaff77
@@ -238,10 +251,11 @@ interval = 3.0
 ping-interval = 10
 
 format-connected = <ramp-signal> <label-connected>
+format-connected-background = #AD69AF
 label-connected = %essid%
 label-disconnected =    not connected
 label-disconnected-foreground = #66
-
+format-disconnected-background = #AD69AF
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
@@ -267,8 +281,7 @@ type = internal/pulseaudio
 sink = alsa_output.pci-0000_00_1b.0.analog-surround-40
 speaker-mixer = Speaker
 headphone-mixer = Headphone
-headphone-id = 9
-
+format-volume-background = #92969D
 format-volume = <ramp-volume> <label-volume>
 label-muted =   muted
 label-muted-foreground = #66
@@ -304,46 +317,52 @@ type = internal/date
 interval = 2
 date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 
-[module/previous]
-type = custom/script
-interval = 86400
-format = "%{T3}<label>"
-format-padding = 5
-; Previous song icon
-exec = echo ""
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+;[module/spotify]
+;type = custom/script
+;interval = 1
+;format-prefix = " "
+;format = <label>
+;exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 
-[module/next]
-type = custom/script
-interval = 86400
-format = "%{T3}<label>"
-format-padding = 5
-; Next song icon
-exec = echo ""
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+[module/arrow1]
+; grey to Blue
+type = custom/text
+content = " "
+content-font = 10
+content-foreground = #92969D
 
-[module/playpause]
-type = custom/ipc
-; Default
-hook-0 = echo ""
-; Playing
-hook-1 = echo ""
-; Paused
-hook-2 = echo ""
-initial = 1
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+[module/arrow2]
+; grey to Blue
+type = custom/text
+content = " "
+content-foreground = #84598D
+content-background = #92969D
 
-[module/spotify]
-type = custom/ipc
-hook-0 = echo ""
-hook-1 = python3 ~/scripts/spotify/spotify_status.py
-initial = 1
-format-padding = 4
-format-underline = #1db954
-line-size = 1
+[module/arrow3]
+; grey to Blue
+type = custom/text
+content-foreground = #92969D
+content = " "
+
+[module/arrow4]
+; grey to Blue
+type = custom/text
+
+content-background = #92969D
+content = " "
+content-foreground = #92965D
+
+[module/arrow5]
+; grey to Blue
+type = custom/text
+content = " "
+content-foreground = #AD69AF
+content-background = #92965D
+
+[module/arrow6]
+; grey to Blue
+type = custom/text
+content = "   "
+content-foreground = #645377
+content-background = #AD69AF
+

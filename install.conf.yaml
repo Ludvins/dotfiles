@@ -1,0 +1,26 @@
+- defaults:
+    link:
+        relink: true
+        create: true
+
+- clean: []
+
+- link:
+    # zsh
+    ~/.zshrc: 'zsh/zshrc'
+    ~/.oh-my-zsh: 'zsh/oh-my-zsh/'
+
+    # emacs
+    ~/.spacemacs: 'spacemacs/spacemacs'
+
+    # i3
+    ~/.i3/config: 'i3/config'
+
+    # Polybar
+    ~/.config/polybar/config: 'polybar/config'
+    ~/.i3/polybar.sh: 'i3/polybar.sh'
+
+- shell:
+
+    # init submodules
+    - [git submodule update --init --recursive, Installing/updating submodules...]

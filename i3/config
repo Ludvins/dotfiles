@@ -34,7 +34,7 @@ bindsym $mod+Shift+Return exec tilix -q
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id "rofi  -theme arthur -combi-modi drun -show combi -modi combi "
+bindsym $mod+d exec --no-startup-id "rofi  -theme arthur -combi-modi window,drun -show combi -modi combi "
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -51,8 +51,8 @@ bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym $mod+Print exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
@@ -131,7 +131,7 @@ bindsym $mod+Ctrl+Left workspace prev
 set $ws1 Telegram
 set $ws2 Firefox
 set $ws3 Code
-set $ws4 Music
+set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
@@ -285,7 +285,7 @@ bindsym $mod+Shift+m [class="Spotify"] scratchpad show
 
 # Polybar
 exec_always --no-startup-id ~/.i3/polybar.sh
-exec_always --no-startuid ~/.config/polybar/scripts/launchlistener.sh
+#exec_always --no-startuid ~/.config/polybar/scripts/launchlistener.sh
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

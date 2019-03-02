@@ -3,17 +3,17 @@
 [bar/top]
 monitor = eDP-1
 width = 100%
-height = 27
+height = 24
 
 background = #000000
 foreground = #ccffffff
 
 line-color = ${bar/bottom.background}
-line-size = 16
+line-size = 3
 
-spacing = 0
+spacing = 2
 padding-right = 1 
-module-margin = 0
+module-margin = 2
 
 ;fc-list to know the name of the font 
 font-0 = NotoSans-Regular:size=8;+3
@@ -25,9 +25,9 @@ font-5 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;+3"
 font-6 = "Material Icons:style=Regular:pixelsize=10;+3"
 font-7 = "UbuntuMono Nerd Font Mono:style=Regular:pixelsize=20;4"
 
-
+modules-left = i3
 modules-center = date
-modules-right = arrow3 volume arrow4 backlight arrow5 wireless-network wired-network arrow6 battery
+modules-right = volume backlight wireless-network wired-network battery
 
 [bar/bottom]
 monitor = eDP-1
@@ -66,7 +66,7 @@ separator =
 [module/backlight]
 type = internal/xbacklight
 format = <ramp> <bar>
-format-background = #92965D
+;format-background = #92965D
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
@@ -92,10 +92,13 @@ format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity> <label-full>
 
+format-charging-underline = #ffff00
+format-discharging-underline = #000000
+format-full-underline = #3dff07
 
-format-charging-background = #645377
-format-discharging-background = #645377
-format-full-background = #645377
+;format-charging-background = #645377
+;format-discharging-background = #645377
+;format-full-background = #645377
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = #f53c3c
@@ -129,7 +132,6 @@ strip-wsnumbers = true
 ws-icon-0 = Telegram;
 ws-icon-1 = Firefox;
 ws-icon-2 = Code;
-ws-icon-3 = Music;
 ws-icon-default = 
 
 format = <label-state> <label-mode>
@@ -251,11 +253,14 @@ interval = 3.0
 ping-interval = 10
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-background = #AD69AF
+;format-connected-background = #AD69AF
 label-connected = %essid%
 label-disconnected =    not connected
 label-disconnected-foreground = #66
 format-disconnected-background = #AD69AF
+
+format-connected-underline = #c9641e
+
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
@@ -281,7 +286,10 @@ type = internal/pulseaudio
 sink = alsa_output.pci-0000_00_1b.0.analog-surround-40
 speaker-mixer = Speaker
 headphone-mixer = Headphone
-format-volume-background = #92969D
+;format-volume-background = #92969D
+
+format-volume-underline = #c2441e
+
 format-volume = <ramp-volume> <label-volume>
 label-muted =   muted
 label-muted-foreground = #66

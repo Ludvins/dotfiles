@@ -103,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ast="astyle —indent=spaces —indent-modifiers —indent-switches —indent-col1-comments —break-blocks —pad-oper —pad-comma —pad-header —align-reference=type —add-braces —attach-return-type —attach-return-type-decl  —max-code-length=80 —break-one-line-headers"
+alias lmk="latexmk -lualatex -pvc"
 
 DEFAULT_USER="ludvins"
 prompt_context(){} 

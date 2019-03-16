@@ -265,6 +265,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec --no-startup-id syncthing -no-browser
 
 
 # MPD NCMPCPP
@@ -359,7 +360,8 @@ mode "$mode_gaps_outer" {
 ## sound-section -  ##
 ######################
 
-exec --no-startup-id "pulseaudio --start"
+exec_always --no-startup-id "pulseaudio --kill"
+exec_always --no-startup-id "pulseaudio --start"
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%

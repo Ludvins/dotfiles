@@ -266,7 +266,7 @@ exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id syncthing -no-browser
-
+#exec --no-startup-id emacs --daemon
 
 # MPD NCMPCPP
 exec --no-startup-id mpd

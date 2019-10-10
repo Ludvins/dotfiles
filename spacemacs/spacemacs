@@ -39,13 +39,14 @@ values."
      plantuml
      yaml
      syntax-checking
-     spell-checking
+     (spell-checking :variables spell-checking-enable-auto-dictionary t)
      pandoc
      html
      sql
      python
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      emacs-lisp
      git
@@ -69,6 +70,7 @@ values."
      doom-themes
      org-preview-html
      racer
+     bnf-mode 
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()

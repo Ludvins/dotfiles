@@ -274,9 +274,9 @@ exec --no-startup-id mpd
 
 # KeyPassXC
 exec --no-startup-id keepassxc
-exec --no-startup-id "sleep 2; i3-msg '[instance=keepassxc] move scratchpad'"
-for_window [class="keepassxc"] floating enable
-bindsym $mod+Shift+p [class="keepassxc"] scratchpad show
+exec --no-startup-id "sleep 2; i3-msg '[instance=KeepassXC] move scratchpad'"
+for_window [class="KeePassXC"] floating enable
+bindsym $mod+Shift+p [class="keePassXC"] scratchpad show
 
 # Spotify
 exec --no-startup-id Spotify
@@ -361,6 +361,7 @@ mode "$mode_gaps_outer" {
 ## sound-section -  ##
 ######################
 
+exec_always --no-startup-id "pulseaudio --start"
 exec_always --no-startup-id "pulseaudio --kill"
 exec_always --no-startup-id "pulseaudio --start"
 bindsym $mod+Ctrl+m exec pavucontrol

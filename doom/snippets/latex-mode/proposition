@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Proposition
+# uuid: Proposition
+# key: prop
+# condition: t
+# --
+
+\begin{proposition}
+$0
+\end{proposition}

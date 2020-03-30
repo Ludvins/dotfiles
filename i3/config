@@ -15,9 +15,9 @@ new_float normal
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
+# bindsym $mod+u border none
+# bindsym $mod+y border pixel 1
+# bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -44,7 +44,6 @@ bindsym $mod+z exec --no-startup-id morc_menu
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
@@ -97,9 +96,9 @@ bindsym $mod+q split toggle
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -169,7 +168,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 assign [class="Telegram"] $ws1
-assign [class="Emacs"] $ws3
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -279,11 +277,10 @@ for_window [instance="keepass"] floating enable
 bindsym $mod+Shift+p [instance="keepass"] scratchpad show
 
 # Spotify
-exec --no-startup-id Spotify
+for_window [class="Spotify"] floating enable, resize set 800 115, border pixel 1, move position 25 px 945 px
+exec --no-startup-id spotify
 exec --no-startup-id "sleep 2; i3-msg '[class=Spotify] move scratchpad'"
-for_window [class="Spotify"] floating enable
 bindsym $mod+Shift+m [class="Spotify"] scratchpad show
-
 
 # Polybar
 exec_always --no-startup-id ~/.i3/polybar.sh
@@ -304,7 +301,7 @@ exec_always --no-startup-id ~/.i3/polybar.sh
 #############################
 
 # Set inner/outer gaps
-gaps inner 20
+gaps inner 40
 gaps outer -4
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -361,7 +358,7 @@ mode "$mode_gaps_outer" {
 ## sound-section -  ##
 ######################
 
-exec_always --no-startup-id "pulseaudio --start"
+exec --no-startup-id pulseaudio
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%

@@ -2,8 +2,7 @@
 ;; Place your private configuration here
 ;;; Custom modeline
 
-(setq doom-font (font-spec :family "Fira Code" :size 13)
-      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
+(setq doom-font (font-spec :family "Fira Code" :size 14))
 
 (custom-theme-set-faces! 'doom-one
   `(org-priority :background ,(doom-color 'bg))

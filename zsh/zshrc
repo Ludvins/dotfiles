@@ -105,3 +105,8 @@ bindkey -s '\ez' "\eq zranger\n"
 
 DEFAULT_USER="ludvins"
 prompt_context(){} 
+
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin

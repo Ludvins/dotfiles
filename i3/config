@@ -41,6 +41,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 
 # launch EmacsClient
 bindsym $mod+e exec --no-startup-id kitty -e emacsclient -t
+bindsym $mod+t exec --no-startup-id kitty -e emacsclient -t ~/Documents/Orgzly/Todo.org
 bindsym $mod+Shift+e exec --no-startup-id emacsclient -c
 
 # launch Nautilus
@@ -53,8 +54,8 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+# bindsym $mod+t exec --no-startup-id pkill compton
+# bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym $mod+Print exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"

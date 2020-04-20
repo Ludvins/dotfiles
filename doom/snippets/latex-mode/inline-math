@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: Inline Math
-# uuid: inline-math
+# name: Inline math
+# uuid: im
 # key: im
 # condition: t
 # --
-\\($1\\)$0
+\\($1\\) $0

@@ -12,3 +12,4 @@
 (package! auctex)
 (package! yasnippet)
 (package! ess)
+(package! xclip)

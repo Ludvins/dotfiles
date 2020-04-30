@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Definition
-# uuid: def
-# key: def
-# --
-
-\begin{definition}
-$0
-\end{definition}

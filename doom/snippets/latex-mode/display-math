@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Displaymath
-# uuid: dm
-# key: dm
-# condition: t
-# --
-\\[
-    $0
-\\]

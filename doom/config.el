@@ -10,4 +10,10 @@
   `(mode-line-buffer-id :foreground ,(doom-color 'fg))
   `(mode-line-success-highlight :background ,(doom-color 'green)))
 
-(add-hook 'csharp-mode-hook 'omnisharp-mode)
+(xclip-mode 1)
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))

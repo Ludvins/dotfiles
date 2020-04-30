@@ -26,8 +26,8 @@ font-6 = "Material Icons:style=Regular:pixelsize=10;+3"
 font-7 = "UbuntuMono Nerd Font Mono:style=Regular:pixelsize=20;4"
 
 modules-left = i3
-modules-center = date spotify
-modules-right = volume backlight wireless-network wired-network battery
+modules-center = date
+modules-right = spotify volume backlight wireless-network wired-network battery
 
 [bar/bottom]
 monitor = eDP1
@@ -378,7 +378,7 @@ content-background = #AD69AF
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = " "
+format-prefix = " "
 format = <label>
 exec = python ~/.config/polybar/spotify_status.py -f '{artist}: {song}' -p '[playing],[paused]'
 format-underline = #1db954
